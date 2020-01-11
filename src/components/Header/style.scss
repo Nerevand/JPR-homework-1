@@ -1,0 +1,97 @@
+.header {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  .header-container {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .header-logo {
+    img {
+      width: 100px;
+    }
+  }
+
+  .header-navigation__ul {
+    display: inline-flex;
+  }
+
+  .header-ul__item {
+    margin-left: 30px;
+    .active-header__link {
+      font-weight: bold;
+      color: #000;
+    }
+  }
+
+  .header-info {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    &:hover .header-absolute {
+      display: flex;
+    }
+  }
+
+  .header-user__avatar {
+    width: 69px;
+    cursor: pointer;
+  }
+
+  .header-absolute {
+    position: absolute;
+    width: auto;
+    top: 100%;
+    right: 0;
+    display: none;
+    h1 {
+      margin: 0;
+      white-space: nowrap;
+    }
+  }
+
+  .wrap {
+    display: inline-flex;
+    align-items: center;
+
+    span {
+      margin: 0 10px;
+    }
+  }
+
+  .guest-btns {
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    margin: 20px auto;
+  }
+
+  .guest-btns,
+  .guest-btns:link,
+  .guest-btns:visited {
+    padding: 13px 10px;
+    border: 1px solid #333;
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 3px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: #333;
+      border: 1px solid #333;
+      color: #fefefe;
+      border-radius: 30px;
+    }
+  }
+
+  .sign-out__btn {
+    width: 120px;
+    cursor: pointer;
+    text-align: center;
+  }
+}

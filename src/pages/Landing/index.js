@@ -1,12 +1,17 @@
 import React, { Fragment } from 'react';
+import { Route } from 'react-router-dom';
 
 import Header from '../../components/Header';
+import MainPage from './MainPage';
+import Info from './Info'
 
 export default function Landing(props) {
   return (
     <Fragment>
-      <Header />
-      Landing
+      <Header />      
+      <Route exact path="/" component={MainPage} />
+      {/* <Route exact path="/" component={Landing} /> */}
+      <Route exact path="/info" component={Info} />
     </Fragment>
   )
 }

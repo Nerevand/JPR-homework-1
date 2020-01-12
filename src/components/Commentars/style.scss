@@ -1,0 +1,33 @@
+.commentar-block {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 10px;
+
+  .commentar-img {
+    margin-right: 10px;
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .commentar-content {
+    margin: 0;
+    min-height: 40px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #cdcdcd !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .edit-commentar,
+  .remove-commentar {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .remove-commentar {
+    margin-left: 20px;
+  }
+}

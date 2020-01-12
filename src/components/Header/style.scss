@@ -61,37 +61,38 @@
       margin: 0 10px;
     }
   }
+}
 
-  .guest-btns {
-    text-decoration: none;
-    font-size: 18px;
-    display: block;
-    margin: 20px auto;
-  }
+.guest-btns {
+  text-decoration: none;
+  font-size: 18px;
+  display: inline-block;
+  margin: 10px auto;
+  cursor: pointer;
+}
 
-  .guest-btns,
-  .guest-btns:link,
-  .guest-btns:visited {
-    padding: 13px 10px;
+.guest-btns,
+.guest-btns:link,
+.guest-btns:visited {
+  padding: 13px 10px;
+  border: 1px solid #333;
+  color: #333;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 3px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: #333;
     border: 1px solid #333;
-    color: #333;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 3px;
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      background: #333;
-      border: 1px solid #333;
-      color: #fefefe;
-      border-radius: 30px;
-    }
+    color: #fefefe;
+    border-radius: 30px;
   }
+}
 
-  .sign-out__btn {
-    width: 120px;
-    cursor: pointer;
-    text-align: center;
-  }
+.sign-out__btn {
+  width: 120px;
+  cursor: pointer;
+  text-align: center;
 }

@@ -6,8 +6,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Auth from './pages/Auth';
 import Landing from './pages/Landing'
 import Loader from './components/Loader';
+import PrivateRoute from './components/PrivateRouter'
 
-import { onWriteuser } from './actions'
+import { onWriteuser, onSetData } from './actions'
 
 import { dataStorage } from './dataStorage';
 
@@ -19,6 +20,8 @@ function App(props) {
     if (!localStorage.getItem('dataStorage')) localStorage.setItem('dataStorage', JSON.stringify(dataStorage))
 
     if (userData) props.onWriteuser(userData);
+
+    props.onSetData(JSON.parse(localStorage.getItem('dataStorage')))
   })
 
   return (
@@ -29,7 +32,8 @@ function App(props) {
           <Route exact path="/sign-up" component={Auth} />
 
           <Route exact path="/" component={Landing} />
-          <Route exact path="/create" component={Landing} />
+          <PrivateRoute exact={true} path="/posts" component={Landing} />
+          <Route exact path="/info" component={Landing} />
         </Switch>
       </BrowserRouter>
       {props.loader ? <Loader /> : null}
@@ -44,7 +48,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onWriteuser
+  onWriteuser,
+  onSetData
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

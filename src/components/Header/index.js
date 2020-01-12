@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 
-import { onSetLoader } from '../../actions';
+import { onSetLoader, onWriteuser } from '../../actions';
 
 import "./style.scss";
 
 function Header(props) {
   const { name } = props.userData;
   const link = window.location.href.split("/");
-  const [redirect, setRedirect] = useState(false);
-  const [activeLink, setActiveLink] = useState(link[link.length - 1] === "");
+  const [activeLink, setActiveLink] = useState(link[link.length - 1]);
 
   const homeClass = classnames("header-ul__link", {
-    "active-header__link": activeLink
+    "active-header__link": activeLink === ''
   });
 
   const createClass = classnames("header-ul__link", {
-    "active-header__link": !activeLink
+    "active-header__link": activeLink === 'posts'
+  });
+
+  const infoClass = classnames("header-ul__link", {
+    "active-header__link": activeLink === 'info'
   });
 
   const handleLogout = () => {
@@ -28,11 +31,9 @@ function Header(props) {
     setTimeout(() => {
       props.onSetLoader(false);
       localStorage.removeItem('user');
-      setRedirect(true)
+      props.onWriteuser({})
     }, 1500);
   }
-
-  if (redirect) return <Redirect push to='/sign-in' />
 
   return (
     <header className="header">
@@ -40,7 +41,7 @@ function Header(props) {
         <NavLink
           to="/"
           className="header-logo"
-          onClick={() => setActiveLink(true)}
+          onClick={() => setActiveLink('')}
         >
           <img
             src="https://www.seoclerk.com/pics/want54841-1To5V31505980185.png"
@@ -54,18 +55,31 @@ function Header(props) {
               <NavLink
                 to="/"
                 className={homeClass}
-                onClick={() => setActiveLink(true)}
+                onClick={() => setActiveLink('')}
               >
                 Home
               </NavLink>
             </li>
+            {
+              name ? 
+              <li className="header-ul__item">
+                <NavLink
+                  to="/posts"
+                  className={createClass}
+                  onClick={() => setActiveLink('posts')}
+                >
+                  My posts
+                </NavLink>
+              </li>
+              : null
+            }
             <li className="header-ul__item">
               <NavLink
-                to="/create"
-                className={createClass}
-                onClick={() => setActiveLink(false)}
+                to="/info"
+                className={infoClass}
+                onClick={() => setActiveLink('info')}
               >
-                Create post
+                Info
               </NavLink>
             </li>
           </ul>
@@ -110,7 +124,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onSetLoader
+  onSetLoader,
+  onWriteuser
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

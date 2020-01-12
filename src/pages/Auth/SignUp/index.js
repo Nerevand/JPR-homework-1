@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import CustomInput from '../../../components/CustomInput';
 
-import { onSetLoader } from '../../../actions';
+import { onSetLoader, onSetData } from '../../../actions';
 
 function SignUp(props) {
   const name = useRef(null);
@@ -24,7 +24,7 @@ function SignUp(props) {
     const validPassword = handleValidationPassword();
 
     if (validName && validMail && validPassword) {
-      let userStorage = JSON.parse(localStorage.getItem('dataStorage'));
+      let dataStorage = JSON.parse(localStorage.getItem('dataStorage'));
       const userData = {
         id: parseInt(+new Date()),
         name: name.current.value.trim(),
@@ -32,12 +32,13 @@ function SignUp(props) {
         password: password.current.value.trim(),
         posts: []
       }
-      userStorage = [...userStorage, userData];
+      dataStorage = [...dataStorage, userData];
       props.onSetLoader(true);
 
       setTimeout(() => {
         props.onSetLoader(false);
-        localStorage.setItem('dataStorage', JSON.stringify(userStorage));
+        localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+        props.onSetData(dataStorage)
         setRedirect(true)
       }, 1500);
     }
@@ -138,7 +139,8 @@ function SignUp(props) {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onSetLoader
+  onSetLoader,
+  onSetData
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(SignUp);

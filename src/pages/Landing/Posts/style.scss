@@ -1,0 +1,41 @@
+.btn-create__wrapper {
+  margin-bottom: 50px;
+  .btn-create {
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 24px;
+  }
+
+  .btn-create {
+    border-radius: 4px;
+    background-color: #d35400;
+    border: none;
+    padding: 20px 30px;
+    transition: all 0.5s;
+  }
+
+  .btn-create span {
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .btn-create span:after {
+    content: "»";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .btn-create:hover span {
+    padding-right: 25px;
+  }
+
+  .btn-create:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+}

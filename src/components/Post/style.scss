@@ -2,6 +2,7 @@
   margin-bottom: 50px;
   background-color: white;
   padding: 20px;
+  position: relative;
 
   .publication-author {
     font-size: 18px;
@@ -37,5 +38,34 @@
     border: 2px solid rgb(214, 214, 255);
     padding: 5px;
     display: inline-block;
+  }
+
+  .absolute-block {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    img {
+      user-select: none;
+    }
+
+    .absolute-list {
+      width: 120px;
+      background-color: #ebebeb;
+      padding: 10px;
+    }
+
+    .absolute-items {
+      font-size: 18px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      &:hover {
+        font-weight: bold;
+      }
+    }
   }
 }

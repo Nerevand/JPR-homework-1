@@ -15,7 +15,7 @@ export default function* workerSaga({ userData }) {
       setTimeout(() => {
         localStorage.removeItem('user');
         localStorage.setItem('user', JSON.stringify(data))
-        handleSuccess();
+        handleSuccess ? handleSuccess() : (() => {})()
       }, 1500);
     }
     yield put({ type: types.CURRENT_USER, payload: data });

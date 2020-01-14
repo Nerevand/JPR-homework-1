@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './style.scss'
 
 export default function CustomInput(props) {
-  const { heading, type, placeholder, refs, error, pattern, onBlur, onChange } = props;
+  const { heading, type, placeholder, refs, error, pattern, onBlur, onChange, value } = props;
 
   return (
     <div className="form-group">
@@ -15,6 +15,7 @@ export default function CustomInput(props) {
         pattern={pattern}
         ref={refs}
         onChange={onChange}
+        defaultValue={value ? value : ''}
         onBlur={onBlur} />
       <p className='form-error'>{error}</p>
     </div>
@@ -29,5 +30,6 @@ CustomInput.propTypes = {
   error: PropTypes.string,
   pattern: PropTypes.string,
   onBlur: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  value: PropTypes.string
 };

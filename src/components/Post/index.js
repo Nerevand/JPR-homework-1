@@ -2,6 +2,7 @@ import React, { Fragment, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import { NavLink } from 'react-router-dom';
 
 import Commentars from '../Commentars';
 
@@ -58,6 +59,7 @@ function Post(props) {
   const handleRemove = () => {
     const { posts } = userData;
     userData.posts = posts.filter(post => post.id !== id);
+
     for (let i = 0; i < dataStorage.length; i++) {
       if (dataStorage[i].id === userData.id) {
         dataStorage[i] = userData;
@@ -113,7 +115,12 @@ function Post(props) {
             {
               open ? <div>
                 <ul className='absolute-list'>
-                  <li className='absolute-items'>Редагувати</li>
+                  <li className='absolute-items'>
+                    <NavLink to={{
+                      pathname: '/create',
+                      data: { props }
+                    }} >Редагувати</NavLink>
+                  </li>
                   <li className='absolute-items' onClick={handleRemove}>Видалити</li>
                 </ul>
               </div>

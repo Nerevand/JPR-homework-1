@@ -33,6 +33,7 @@ function App(props) {
 
           <Route exact path="/" component={Landing} />
           <PrivateRoute exact={true} path="/posts" component={Landing} />
+          <PrivateRoute exact={true} path="/create" component={Landing} />
           <Route exact path="/info" component={Landing} />
         </Switch>
       </BrowserRouter>

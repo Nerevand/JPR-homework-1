@@ -17,18 +17,7 @@ function Commentars(props) {
     setEdit(true);
     setTimeout(() => {
       comentarRef.current.focus();
-    }, 100);
-  }
-
-  const isDescendant = (parent, child) => {
-    let node = child.parentNode;
-    while (node != null) {
-      if (node === parent) {
-        return true;
-      }
-      node = node.parentNode;
-    }
-    return false;
+    }, 1000);
   }
 
   const handleRemoveCommentar = () => {
@@ -52,10 +41,10 @@ function Commentars(props) {
     }, 1500);
   }
 
-  const handleCloseContentEditable = ({ target }) => {
-    if (isDescendant(parentRef.current, target) && localStorage.getItem('user') && edit && target !== comentarRef.current && target !== spanRef.current) {
-      setEdit(false)
-
+  const handleCloseContentEditable = (e) => {
+    if(edit && e.keyCode === 13) {
+      setEdit(false)     
+      
       const { dataStorage } = props;
 
       dataStorage.map(user => {
@@ -68,11 +57,12 @@ function Commentars(props) {
       })
 
       props.onSetData(dataStorage)
+
     }
   }
 
   useEffect(() => {
-    window.addEventListener('click', handleCloseContentEditable)
+    comentarRef.current.addEventListener('keydown', handleCloseContentEditable)
 
     comentarRef.current.addEventListener("paste", e => {
       e.preventDefault();

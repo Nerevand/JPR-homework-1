@@ -85,14 +85,14 @@ function Post(props) {
         <img src={img} alt='' />
       </div>
 
-      <p>
+      <p className='publication-content'>
         {content}
       </p>
 
       <div>
         <h2>Коментарі</h2>
         {
-          voted || author.id === props.userData.id ? null :
+          voted || author.id === props.userData.id || !props.userData.id ? null :
             <Fragment>
               <h3>Залишити коментар</h3>
               <div className='leave-wrapper'>

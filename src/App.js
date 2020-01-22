@@ -22,7 +22,7 @@ function App(props) {
     if (userData) props.onWriteuser(userData);
 
     props.onSetData(JSON.parse(localStorage.getItem('dataStorage')))
-  })
+  }, [])
 
   return (
     <Fragment>

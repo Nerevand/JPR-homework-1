@@ -69,7 +69,7 @@ function Commentars(props) {
       const text = (e.originalEvent || e).clipboardData.getData('text/plain');
       window.document.execCommand('insertText', false, text);
     })
-  })
+  }, [])
 
   return (
     <div className='commentar-block'>
